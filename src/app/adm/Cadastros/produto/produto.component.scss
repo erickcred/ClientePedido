@@ -1,0 +1,13 @@
+.form-cadastro {
+  min-width: 150px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.form-item-width {
+  width: 100%;
+
+  &.form-text {
+    width: 50%;
+  }
+}
