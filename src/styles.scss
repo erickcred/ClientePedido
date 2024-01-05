@@ -9,3 +9,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body {
   overflow: hidden;
 }
+
+
+
+.form-cadastro {
+  min-width: 150px;
+  width: 100%;
+  // height: calc(100vh - 65px);
+  height: fit-content;
+  padding: 10px 0px 20px;
+  overflow-x: hidden;
+}
+
+.form-item-width {
+  width: 100%;
+
+  &.form-text {
+    width: 50%;
+  }
+}

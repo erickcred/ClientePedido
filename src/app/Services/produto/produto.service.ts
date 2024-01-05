@@ -17,14 +17,14 @@ export class ProdutoService {
   listarTodos() {
     return this.http.get<Produto[]>(`${this.urlApi}`).pipe(
       first(),
-      tap(x => console.log(x))
+      // tap(x => console.log(x))
     )
   }
 
   listar() {
     return this.http.get<Produto>(`${this.urlApi}`).pipe(
       first(),
-      tap(x => console.log(x))
+      // tap(x => console.log(x))
     )
   }
 
@@ -38,7 +38,7 @@ export class ProdutoService {
   atualizar(produto: Produto) {
     return this.http.put<Produto>(`${this.urlApi}`, produto).pipe(
       first(),
-      tap(x => console.log(x))
+      // tap(x => console.log(x))
     )
   }
 }

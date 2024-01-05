@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Produto } from 'src/app/Models/Produto';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { ProdutoService } from 'src/app/Services/produto/produto.service';
-
-interface Transaction {
-  item: string;
-  cost: number;
-}
 
 @Component({
   selector: 'app-produto',
@@ -24,9 +18,6 @@ export class ProdutoComponent implements OnInit {
     valorUni: [0],
   })
 
-  produto: Produto = new Produto()
-
-
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private produtoService: ProdutoService
@@ -39,12 +30,11 @@ export class ProdutoComponent implements OnInit {
   }
 
   adicionarProduto() {
-    if (this.form.valid) {
-      console.log(this.form.valid)
-    } else {
-      console.log(this.form.valid)
+    let clienteValido = this.validaForm()
+    if (!clienteValido) {
+      alert('cliente invalido: ' + this.form.valid)
+      return
     }
-    console.log(this.form.value)
 
     this.produtoService.salvar(this.form.value).subscribe({
       next: (response: any) => {
@@ -52,6 +42,15 @@ export class ProdutoComponent implements OnInit {
       },
       error: (error: any) => { console.log(error); }
     })
+  }
+
+  validaForm() {
+    if (this.form.valid) {
+      console.log(this.form.valid)
+    } else {
+      console.log(this.form.valid)
+    }
+    return this.form.valid
   }
 
 

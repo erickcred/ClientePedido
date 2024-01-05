@@ -1,4 +1,9 @@
+import { Cliente } from "./Cliente"
+
 export class Telefone {
-  id: number = 0
-  numerto!: string
+  id!: number
+  numero!: string
+  descricao!: string
+  usuarioId!: number
+  usuario!: Cliente
 }

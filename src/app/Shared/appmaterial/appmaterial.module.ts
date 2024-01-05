@@ -11,7 +11,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table'
-
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSortModule } from '@angular/material/sort'
+import { MatListModule } from '@angular/material/list'
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { MatTableModule } from '@angular/material/table'
     MatNativeDateModule,
     MatChipsModule,
     MatTableModule,
-
+    MatPaginatorModule,
+    MatSortModule,
+    MatListModule,
   ]
 })
 export class AppmaterialModule { }

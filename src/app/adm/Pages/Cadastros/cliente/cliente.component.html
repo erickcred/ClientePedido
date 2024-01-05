@@ -1,1 +1,124 @@
-<h1>cliente works!</h1>
+<mat-tab-group animationDuration="2ms">
+  <mat-tab id="cadastroCliente" label="Cadastro Cliente" class="tab-item">
+
+    <form [formGroup]="formCliente" class="form-cadastro" *ngIf="mostrarFormCliente">
+      <div class="row">
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Razao Social</mat-label>
+            <input
+              matInput
+              placeholder="Razao Social"
+              formControlName="razaoSocial">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Documento</mat-label>
+            <input
+              matInput
+              placeholder="Documento"
+              formControlName="documento">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Tipo Documento</mat-label>
+            <mat-select
+              formControlName="tipoDocumento">
+              <mat-option value="0">CPF</mat-option>
+              <mat-option value="1">CNPJ</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field  class="form-item-width">
+            <mat-label>Nome Contato</mat-label>
+            <input
+              matInput
+              class="example-right-align"
+              placeholder="Nome Contato"
+              formControlName="nomeContato">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-stroked-button color="primary" (click)="adicionarCliente()">Adicionar Cliente</button>
+    </form>
+
+    <div *ngIf="mostrarFormTelefone">
+      <mat-list role="list" *ngFor="let telefone of telefones">
+        <mat-list-item role="listitem"><strong>Telefone:</strong> {{telefone.numero}} - <strong>Descrição:</strong> {{telefone.descricao}}</mat-list-item>
+      </mat-list>
+    </div>
+
+    <form [formGroup]="formTelefone" class="form-cadastro" *ngIf="mostrarFormTelefone">
+      <h2>Telefone</h2>
+      <div class="row">
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Telefone</mat-label>
+            <input
+            matInput
+            class="example-right-align"
+            placeholder="Telefone"
+            formControlName="numero">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Descricao</mat-label>
+            <input
+            matInput
+            class="example-right-align"
+            placeholder="descricao"
+            formControlName="descricao">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-stroked-button color="primary" class="me-2" (click)="adicionarTelefone()">{{telefones.length > 0? 'Adicionar outro telefone' : 'Adicionar telefone'}}</button>
+      <button mat-flat-button color="primary" (click)="cadastrarTelefone()">Finalizar cadastro</button>
+    </form>
+
+  </mat-tab>
+</mat-tab-group>
+
+
+<!-- <h4>Status da Produção</h4>
+<mat-chip-listbox aria-label="Fish selection">
+  <mat-chip-option selected>Não Iniciada</mat-chip-option>
+  <mat-chip-option>Iniciada</mat-chip-option>
+  <mat-chip-option color="warn">Falta de Material</mat-chip-option>
+  <mat-chip-option color="accent">Finalizado</mat-chip-option>
+</mat-chip-listbox> -->
+
+
+
+<!-- <div class="col-md-6 col-sm-12"></div> -->
+
+<!-- <div class="col-md-6 col-sm-12">
+  <mat-form-field class="form-item-width">
+    <mat-label>Data de chegada</mat-label>
+    <input matInput [matDatepicker]="dataChegada">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="dataChegada"></mat-datepicker-toggle>
+    <mat-datepicker #dataChegada></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div class="col-md-6 col-sm-12">
+  <mat-form-field class="form-item-width">
+    <mat-label>Data prevista entrega</mat-label>
+    <input matInput [matDatepicker]="dataPrevistaEntrega">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="dataPrevistaEntrega"></mat-datepicker-toggle>
+    <mat-datepicker #dataPrevistaEntrega></mat-datepicker>
+  </mat-form-field>
+</div> -->
