@@ -3,6 +3,11 @@ import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, UntypedFor
 import { Produto } from 'src/app/Models/Produto';
 import { ProdutoService } from 'src/app/Services/produto/produto.service';
 
+interface Transaction {
+  item: string;
+  cost: number;
+}
+
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
@@ -16,7 +21,7 @@ export class ProdutoComponent implements OnInit {
     quantidade: [0],
     cor: [''],
     descricao: [''],
-    valorUni: [0]
+    valorUni: [0],
   })
 
   produto: Produto = new Produto()
@@ -30,7 +35,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.form.value.nome = 'asdf'
+
   }
 
   adicionarProduto() {
@@ -45,7 +50,9 @@ export class ProdutoComponent implements OnInit {
       next: (response: any) => {
         console.log(response)
       },
-      error: (error: any) => { console.log(error) }
+      error: (error: any) => { console.log(error); }
     })
   }
+
+
 }

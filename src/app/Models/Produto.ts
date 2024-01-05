@@ -5,6 +5,7 @@ export class Produto {
   cor: string = ''
   descricao!: string
   valorUni!: number
+  ativo: boolean = true
 }
 
 

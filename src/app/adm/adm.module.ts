@@ -7,9 +7,9 @@ import { AdmRoutingModule } from './adm-routing.module';
 import { AdmComponent } from './adm.component';
 import { ProdutoComponent } from './Pages/Cadastros/produto/produto.component';
 import { ClienteComponent } from './Pages/Cadastros/cliente/cliente.component';
-import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppmaterialModule } from '../Shared/appmaterial/appmaterial.module';
+import { HomeComponent } from './Pages/home/home.component';
 
 
 @NgModule({
@@ -17,16 +17,18 @@ import { AppmaterialModule } from '../Shared/appmaterial/appmaterial.module';
     AdmComponent,
     ProdutoComponent,
     ClienteComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule,
     AdmRoutingModule,
     ReactiveFormsModule,
     FormsModule,
 
     AppmaterialModule,
 
-  ]
+  ],
+  providers: [],
+  bootstrap: [AdmComponent]
 })
 export class AdmModule { }

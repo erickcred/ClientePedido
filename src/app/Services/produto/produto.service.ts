@@ -8,7 +8,7 @@ import { Produto } from 'src/app/Models/Produto';
 })
 export class ProdutoService {
 
-  private readonly urlApi = ''
+  private readonly urlApi = 'https://localhost:7143/Produto'
 
   constructor(
     private http: HttpClient
@@ -31,7 +31,7 @@ export class ProdutoService {
   salvar(produto: Partial<Produto>) {
     return this.http.post<Produto>(`${this.urlApi}`, produto).pipe(
       first(),
-      tap(x => console.log(x))
+      // tap(x => console.log(x))
     )
   }
 

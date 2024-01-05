@@ -6,7 +6,8 @@ export class Pedido {
   numeroPrdido!: string
   dataEmissao!: Date
   dataChegada!: Date
-  precisaoEntrega!: Date
+  previsaoEntrega!: Date
   cliente!: Cliente
   produto!: Produto[]
+  ativo: boolean = true
 }

@@ -5,14 +5,14 @@
 
     <button mat-raised-button color="primary" class="w-100 mb-2" [matMenuTriggerFor]="menu">Cadastros</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="['cadastro-cliente', { adm: 'adm'} ]">Cliente</button>
-      <button mat-menu-item [routerLink]="['cadastro-produto', { adm: 'adm'} ]">Produto</button>
+      <button mat-menu-item routerLink="cadastro-cliente">Clientes</button>
+      <button mat-menu-item routerLink="cadastro-produto">Produtos</button>
     </mat-menu>
 
   </div>
 
   <main>
-    <!-- <app-produto></app-produto> -->
-    <router-outlet name="adm"></router-outlet>
+    <router-outlet></router-outlet>
+    <app-home></app-home>
   </main>
 </div>

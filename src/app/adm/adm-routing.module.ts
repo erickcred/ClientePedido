@@ -5,9 +5,12 @@ import { ClienteComponent } from './Pages/Cadastros/cliente/cliente.component';
 import { ProdutoComponent } from './Pages/Cadastros/produto/produto.component';
 
 const routes: Routes = [
-  { path: '', component: AdmComponent },
-  { path: 'cadastro-cliente', component: ClienteComponent, outlet: 'adm' },
-  { path: 'cadastro-produto', component: ProdutoComponent, outlet: 'adm' }
+  { path: '', component: AdmComponent,
+    children: [
+    { path: 'cadastro-produto', component: ProdutoComponent },
+    { path: 'cadastro-cliente', component: ClienteComponent }
+    ]
+  },
 ];
 
 @NgModule({
