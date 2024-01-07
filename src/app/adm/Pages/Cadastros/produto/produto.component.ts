@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ProdutoService } from 'src/app/Services/produto/produto.service';
 
 @Component({
@@ -11,11 +11,11 @@ export class ProdutoComponent implements OnInit {
 
   form = this.formBuilder.group({
     // id: [null],
-    nome: [''],
-    quantidade: [0],
+    nome: ['', [Validators.required]],
+    quantidade: [0, [Validators.required]],
     cor: [''],
     descricao: [''],
-    valorUni: [0],
+    valorUni: [0, [Validators.required]],
   })
 
   constructor(
