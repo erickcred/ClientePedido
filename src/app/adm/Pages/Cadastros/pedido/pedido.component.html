@@ -1,0 +1,174 @@
+<mat-tab-group animationDuration="2ms">
+  <mat-tab id="cadastroProduto" label="Cadastro Pedido" class="tab-item">
+
+    <form [formGroup]="formPedido" class="form-cadastro" *ngIf="mostrarFormPedido">
+      <div class="row">
+
+        <!-- <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Id</mat-label>
+            <input
+              matInput
+              placeholder="Id"
+              formControlName=""
+              [(ngModel)]="produto.id">
+          </mat-form-field>
+        </div> -->
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>N° Pedido</mat-label>
+            <input
+              matInput
+              placeholder="N° Pedido"
+              formControlName="numeroPrdido">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="form-item-width">
+              <mat-label>Data Chegada</mat-label>
+              <input matInput [matDatepicker]="dataChegada" disable>
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dataChegada"></mat-datepicker-toggle>
+              <mat-datepicker #dataChegada></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="form-item-width">
+              <mat-label>Data Emissão</mat-label>
+              <input matInput [matDatepicker]="dataEmissao">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dataEmissao"></mat-datepicker-toggle>
+              <mat-datepicker #dataEmissao></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="col-md-6 col-sm-12">
+            <mat-form-field class="form-item-width">
+              <mat-label>Previsão Entrega</mat-label>
+              <input matInput [matDatepicker]="previsaoEntrega">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="previsaoEntrega"></mat-datepicker-toggle>
+              <mat-datepicker #previsaoEntrega></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Cliente</mat-label>
+            <mat-select
+              formControlName="clienteId">
+              <mat-option></mat-option>
+              <mat-option *ngFor="let cli of clientes" value="{{cli.id}}">{{cli.razaoSocial}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <button mat-stroked-button color="primary" (click)="criarPedido()">Criar Pedido</button>
+    </form>
+
+  </mat-tab>
+
+  <mat-tab id="cadastroProduto" label="Cadastro Pedido" class="tab-item">
+
+    <form [formGroup]="formProduto" class="form-cadastro">
+      <div class="row">
+
+        <!-- <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Id</mat-label>
+            <input
+              matInput
+              placeholder="Id"
+              formControlName=""
+              [(ngModel)]="produto.id">
+          </mat-form-field>
+        </div> -->
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Nome Produto</mat-label>
+            <input
+              matInput
+              placeholder="Nome Produto"
+              formControlName="nome">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Cor</mat-label>
+            <mat-select
+              formControlName="cor">
+              <mat-option></mat-option>
+              <mat-option value="amarelo">Amarelo</mat-option>
+              <mat-option value="azul">Azul</mat-option>
+              <mat-option value="bege">Bege</mat-option>
+              <mat-option value="bordo">Bordô</mat-option>
+              <mat-option value="branco">Branco</mat-option>
+              <mat-option value="caramelo">Caramelo</mat-option>
+              <mat-option value="cinza">Cinza</mat-option>
+              <mat-option value="cobre">Cobre</mat-option>
+              <mat-option value="creme">Creme</mat-option>
+              <mat-option value="dourado">Dourado</mat-option>
+              <mat-option value="jade">Jade</mat-option>
+              <mat-option value="jumbo">Jambo</mat-option>
+              <mat-option value="jasmine">Jasmine</mat-option>
+              <mat-option value="kiwi">Kiwi</mat-option>
+              <mat-option value="laranjs">Laranja</mat-option>
+              <mat-option value="lavanda">Lavanda</mat-option>
+              <mat-option value="lilas">Lilás</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field class="form-item-width">
+            <mat-label>Quantidade</mat-label>
+            <input
+              matInput
+              type="number"
+              placeholder="Quantidade"
+              formControlName="quantidade">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <mat-form-field  class="form-item-width" floatLabel="always">
+            <mat-label>Valor Uni</mat-label>
+            <input
+              matInput
+              type="number"
+              step="any"
+              min="0"
+              class="example-right-align"
+              placeholder="0"
+              formControlName="valorUni">
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <mat-form-field class="form-item-width">
+        <mat-label>Descrição do produto</mat-label>
+        <textarea
+          matInput
+          formControlName="descricao"></textarea>
+      </mat-form-field>
+
+      <button mat-stroked-button color="primary" (click)="adicionarProduto()">Adicionar Produto</button>
+    </form>
+
+  </mat-tab>
+</mat-tab-group>

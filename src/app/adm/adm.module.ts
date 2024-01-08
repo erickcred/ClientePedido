@@ -10,6 +10,7 @@ import { ClienteComponent } from './Pages/Cadastros/cliente/cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppmaterialModule } from '../Shared/appmaterial/appmaterial.module';
 import { HomeComponent } from './Pages/home/home.component';
+import { PedidoComponent } from './Pages/Cadastros/pedido/pedido.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { HomeComponent } from './Pages/home/home.component';
     ProdutoComponent,
     ClienteComponent,
     HomeComponent,
+    PedidoComponent,
   ],
   imports: [
     CommonModule,
