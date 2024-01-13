@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('Produto') paginatorProduto!: MatPaginator
   @ViewChild('Cliente') paginatorCliente!: MatPaginator
+  @ViewChild('Pedido') paginatorPedido!: MatPaginator
 
   displayedColumns: string[] = ['pedido', 'nome', 'cor', 'descricao', 'quantidade', 'valorUni']
   produtos = new MatTableDataSource<Produto[]>()
@@ -75,7 +76,7 @@ export class HomeComponent implements OnInit {
   listarPedidos() {
     this.pedidoService.listarTodos().subscribe({
       next: (response: any) => {
-        this.pedidos = response
+        this.pedidos.data = response
         console.log(response)
       },
       error: (error: any) => {
@@ -87,6 +88,7 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit() {
     this.clientes.paginator = this.paginatorCliente
     this.produtos.paginator = this.paginatorProduto
+    this.pedidos.paginator = this.paginatorPedido
   }
 
 }

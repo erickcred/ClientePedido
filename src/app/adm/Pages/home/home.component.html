@@ -1,5 +1,6 @@
 <mat-tab-group animationDuration="2ms">
 
+  <!-- Pedido -->
   <mat-tab label="Pedidos" class="tab-item">
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="pedidos">
@@ -41,14 +42,16 @@
       </table>
 
       <mat-paginator
-        #Cliente
+        #Pedido
         [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons
         aria-label="Select page of periodic elements">
       </mat-paginator>
     </div>
   </mat-tab>
+  <!-- Pedido -->
 
+  <!-- Cliente -->
   <mat-tab label="Clientes" class="tab-item">
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="clientes">
@@ -89,7 +92,9 @@
       </mat-paginator>
     </div>
   </mat-tab>
+  <!-- Cliente -->
 
+  <!-- Produto -->
   <mat-tab label="Produtos">
     <table mat-table [dataSource]="produtos" class="mat-elevation-z8">
 
@@ -152,9 +157,6 @@
       aria-label="Select page of periodic elements">
     </mat-paginator>
   </mat-tab>
-
-
-
-
+  <!-- Produto -->
 
 </mat-tab-group>
