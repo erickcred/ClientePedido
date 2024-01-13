@@ -21,7 +21,7 @@
             <input
               matInput
               placeholder="N° Pedido"
-              formControlName="numeroPrdido">
+              formControlName="numeroPedido">
           </mat-form-field>
         </div>
 
@@ -77,11 +77,19 @@
       <button mat-stroked-button color="primary" (click)="criarPedido()">Criar Pedido</button>
     </form>
 
-  </mat-tab>
 
-  <mat-tab id="cadastroProduto" label="Cadastro Pedido" class="tab-item">
 
-    <form [formGroup]="formProduto" class="form-cadastro">
+    <div *ngIf="mostrarFormProduto">
+      <li *ngFor="let produto of produtos" class="cadastroViewList">
+        <strong>Produto:</strong> {{produto.nome}} -
+        {{produto.cor}} -
+        {{produto.quantidade}} <strong>un</strong> -
+        <strong>Val un:</strong> {{produto.valorUni | currency: 'BRL'}}
+      </li>
+    </div>
+
+    <form [formGroup]="formProduto" class="form-cadastro" *ngIf="mostrarFormProduto">
+      <h2>Produto</h2>
       <div class="row">
 
         <!-- <div class="col-md-6 col-sm-12">
@@ -167,8 +175,10 @@
           formControlName="descricao"></textarea>
       </mat-form-field>
 
-      <button mat-stroked-button color="primary" (click)="adicionarProduto()">Adicionar Produto</button>
+      <button mat-stroked-button color="primary" class="me-2" (click)="adicionarProduto()">{{produtos.length > 0? 'Adicionar outro Produto' : 'Adicionar Produto'}}</button>
+      <button mat-flat-button color="primary" (click)="cadastrarProdutos()">Finalizar cadastro</button>
     </form>
 
   </mat-tab>
+
 </mat-tab-group>

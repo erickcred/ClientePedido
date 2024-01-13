@@ -1,3 +1,5 @@
+import { Pedido } from "./Pedido"
+
 export class Produto {
   id: number = 0
   nome!: string
@@ -6,6 +8,8 @@ export class Produto {
   descricao!: string
   valorUni!: number
   ativo: boolean = true
+  pedidoId: number = 0
+  pedido!: Pedido
 }
 
 

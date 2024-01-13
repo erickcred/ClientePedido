@@ -3,11 +3,11 @@ import { Produto } from "./Produto"
 
 export class Pedido {
   id: number = 0
-  numeroPrdido!: string
+  numeroPedido: string | undefined
   dataEmissao!: string
   dataChegada!: string
   previsaoEntrega!: string
-  clienteId!: number
+  clienteId: number | undefined
   cliente!: Cliente
   produto!: Produto[]
   Finalizado: boolean = true

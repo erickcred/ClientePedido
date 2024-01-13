@@ -83,13 +83,11 @@ export class ClienteComponent implements OnInit {
       this.telefones.push(this.formTelefone.value)
 
       this.limparFormulario(this.formTelefone)
-
-      this.salvarTelefone()
     }
 
   }
 
-  salvarTelefone() {
+  salvarTelefones() {
     if (this.telefones.length > 0) {
       this.clienteService.salvarTelefone(this.telefones).subscribe({
         next: (response) => {
@@ -105,8 +103,10 @@ export class ClienteComponent implements OnInit {
   cadastrarTelefone() {
     this.mostrarFormTelefone = false
     this.mostrarFormCliente = true
+    this.salvarTelefones()
 
     this.limparFormulario(this.formCliente)
+    this.telefones = []
   }
 
   validaFormulario(formulario: FormGroup) {

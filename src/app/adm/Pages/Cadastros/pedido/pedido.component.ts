@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/Models/Cliente';
+import { Pedido } from 'src/app/Models/Pedido';
+import { Produto } from 'src/app/Models/Produto';
 import { ClienteService } from 'src/app/Services/cliente/cliente.service';
 import { PedidoService } from 'src/app/Services/pedido/pedido.service';
+import { ProdutoService } from 'src/app/Services/produto/produto.service';
 
 @Component({
   selector: 'app-pedido',
@@ -15,7 +18,7 @@ export class PedidoComponent implements OnInit {
   mostrarFormProduto: boolean = false
 
   formPedido = this.formBuilder.group({
-    numeroPrdido: ['', [Validators.required]],
+    numeroPedido: ['', [Validators.required]],
     dataEmissao: [Date(), [Validators.required]],
     dataChegada: [Date(), [Validators.required]],
     previsaoEntrega: [Date(), [Validators.required]],
@@ -24,20 +27,24 @@ export class PedidoComponent implements OnInit {
   })
 
   formProduto = this.formBuilder.group({
-    // id: [null],
     nome: ['', [Validators.required]],
     quantidade: [0, [Validators.required]],
     cor: [''],
     descricao: [''],
     valorUni: [0, [Validators.required]],
+    ativo: [true],
+    pedidoId: [0]
   })
 
+  pedido: Pedido = new Pedido()
   clientes: Cliente[] = []
+  produtos: any[] = []
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private pedidoService: PedidoService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private produtoService: ProdutoService
   ) {
 
   }
@@ -58,39 +65,69 @@ export class PedidoComponent implements OnInit {
   }
 
   criarPedido() {
-    console.log(this.validaFormulario(this.formPedido))
-    console.log(this.formPedido.value)
-    let data = this.formPedido.value.dataEmissao
-
-    new Date()
-
-
-
+    let pedido = new Pedido()
+    pedido.numeroPedido = this.formPedido.value.numeroPedido
+    pedido.dataChegada = this.formataData(this.formPedido.value.dataChegada)
+    pedido.dataEmissao = this.formataData(this.formPedido.value.dataEmissao)
+    pedido.previsaoEntrega = this.formataData(this.formPedido.value.previsaoEntrega)
+    pedido.clienteId = this.formPedido.value.clienteId
     if (this.validaFormulario(this.formPedido)) {
 
-      // this.pedidoService.salvar(this.formPedido.value).subscribe({
-      //   next: (response) => {
-      //     console.log(response)
-      //     this.mostrarFormPedido = false
-      //     this.mostrarFormProduto = true
-      //   },
-      //   error: (error) => {
-      //     console.log(error)
-      //   }
-      // })
-// 2024-01-07T14:57:16.677Z
-
+      this.pedidoService.salvar(pedido).subscribe({
+        next: (response) => {
+          console.log(response)
+          this.pedido = response
+          this.mostrarFormPedido = false
+          this.mostrarFormProduto = true
+        },
+        error: (error) => {
+          console.log(error)
+        }
+      })
     }
-  }
-
-  adicionarProduto() {
-
-    this.limparFormulario(this.formProduto)
   }
 
   finalizarCadastro() {
     this.mostrarFormPedido = true
     this.mostrarFormProduto = false
+  }
+
+  formataData(data: any) {
+    console.log('Data Emissão: ')
+    console.log(data)
+
+    let convert = new Date(data)
+    console.log(convert)
+    return (convert.getMonth() + 1) +'-'+ convert.getDate() +'-'+ convert.getFullYear()
+  }
+
+  adicionarProduto() {
+    if (this.validaFormulario(this.formProduto)) {
+      this.formProduto.value.pedidoId = this.pedido.id
+      this.produtos.push(this.formProduto.value)
+
+      this.limparFormulario(this.formProduto)
+    }
+  }
+
+  salvarProdutos() {
+    this.produtoService.salvarLista(this.produtos).subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
+  cadastrarProdutos() {
+    this.mostrarFormProduto = false
+    this.mostrarFormPedido = true
+    this.salvarProdutos()
+
+    this.limparFormulario(this.formPedido)
+    this.produtos = []
   }
 
   validaFormulario(formulario: FormGroup) {
@@ -101,10 +138,5 @@ export class PedidoComponent implements OnInit {
     formulario.clearValidators()
     formulario.reset()
     formulario.removeValidators
-  }
-
-  formataData() {
-    // let data = new Date(this.formPedido.value.dataEmissao)
-
   }
 }
